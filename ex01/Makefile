@@ -17,9 +17,6 @@ OBJS	:= $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-n: clear
-	norminette
-
 r: re
 	./phonebook
 

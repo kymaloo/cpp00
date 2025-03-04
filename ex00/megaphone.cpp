@@ -2,9 +2,9 @@
 
 static void megaphone(int argc, char **argv)
 {
-    int 	i;
-	int		j;
-	char	c;
+    int 	    i;
+	int		    j;
+	std::string word;
 
     i = 1;
     if (argc == 1)
@@ -16,15 +16,12 @@ static void megaphone(int argc, char **argv)
 			j = 0;
 			while (argv[i][j])
 			{
-				c = std::toupper(argv[i][j]);
-				std::cout << c;
+				word += std::toupper(argv[i][j]);
 				j++;
 			}
-			if (i != argc - 1)
-				std::cout << ' ';
             i++;
         }
-		std::cout << std::endl;
+		std::cout << word << std::endl;
     }
 }
 

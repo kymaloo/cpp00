@@ -6,59 +6,135 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:41:15 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/02/28 17:10:01 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:55:13 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.class.hpp"
 
-void	Contact::PrintContact(void)
+std::string	getInput(std::string parameter)
 {
-	std::cout << first_name << std::endl;
-	std::cout << last_name << std::endl;
-	std::cout << nick_name << std::endl;
-	std::cout << phone_numbers << std::endl;
-	std::cout << darkest_secret << std::endl;
-}
+	std::string input;
 
-void Contact::FillContact(std::string &str, std::string parameter)
-{
-    std::string tmp;
-
-    std::cout << parameter << std::endl;
-    std::getline(std::cin, tmp);
-    if (std::cin.eof())
-        return;
-    CheckStringIsEmpty(tmp, parameter);
-    str = tmp;
-}
-
-void Contact::CheckStringIsEmpty(std::string &str, std::string parameter)
-{
-    while (str.empty())
+	input.clear();
+	while (input.empty())
     {
-        std::cout << "Please enter your " << parameter << std::endl;
-        std::getline(std::cin, str);
-        if (std::cin.eof())
-            return;
+    	std::cout << parameter << std::endl;
+    	std::getline(std::cin, input);
+    	if (std::cin.eof())
+        	return ;
+	}
+	return (input);
+}
+
+void	Contact::setFirstName(std::string str)
+{
+	_firstName = deleteWhiteSpace(str, _whitespaces);
+}
+
+void	Contact::setLastName(std::string str)
+{
+	_lastName = deleteWhiteSpace(str, _whitespaces);
+}
+
+void	Contact::setNickName(std::string str)
+{
+	_nickName = deleteWhiteSpace(str, _whitespaces);
+}
+
+void	Contact::setDarkestSecret(std::string str)
+{
+	_darkestSecret = deleteWhiteSpace(str, _whitespaces);
+}
+
+void Contact::fillContact(void)
+{
+	setFirstName(getInput(_parameter[0]));
+	setLastName(getInput(_parameter[1]));
+	setNickName(getInput(_parameter[2]));
+	setDarkestSecret(getInput(_parameter[4]));
+}
+
+std::string	deleteWhiteSpace(std::string input, std::string whiteSpace)
+{
+	std::size_t found;
+
+	found = input.find_first_of(whiteSpace);
+  	while (found != std::string::npos)
+  	{
+    	input.erase(found, 1);
+    	found = input.find_first_of(whiteSpace);
+  	}
+	return (input);
+}
+
+bool numIsValid(std::string str)
+{
+    if (str.length() != 10)
+        return (false);
+    for (size_t i = 0; i < str.length(); i++)
+	{
+        if (!std::isdigit(str[i]))
+            return (false);
     }
+    if (str[0] != '0')
+        return (false);
+    return (true);
 }
 
-void Contact::Setters(std::string s, int i)
+Contact::Contact(void)
 {
-	if (i == 0)
-		first_name = s;
-	if (i == 1)
-		last_name = s;
-	if (i == 2)
-		nick_name = s;
-	if (i == 0)
-		phone_numbers = s;
-	if (i == 0)
-		darkest_secret = s;
+	std::cout << "The constuctor Contact is called" << std::endl;
+	_parameter[0] = "First name: ";
+	_parameter[1] = "Last name: ";
+	_parameter[2] = "Nick name: ";
+	_parameter[3] = "Phone number: ";
+	_parameter[4] = "Darkest secret: ";
+	_whitespaces = " \t\f\v\n\r";
+	_status = false;
 }
 
-std::string Contact::Getters(void)
+Contact::~Contact(void)
 {
-	return (first_name);
+	std::cout << "The destructor Contact is called" << std::endl;
+}
+
+void	Contact::setStatus(bool status)
+{
+	_status = status;
+}
+
+bool	Contact::getStatus(void)
+{
+	return (_status);
+}
+
+std::string	Contact::getWhitespaces(void)
+{
+	return (_whitespaces);
+}
+
+std::string	Contact::getFirstName(void)
+{
+	return (_firstName);
+}
+
+std::string	Contact::getLastName(void)
+{
+	return (_lastName);
+}
+
+std::string	Contact::getNickName(void)
+{
+	return (_nickName);
+}
+
+int	Contact::getPhoneNumber(void)
+{
+	return (_phoneNumber);
+}
+
+std::string	Contact::getDarkestSecret(void)
+{
+	return (_darkestSecret);
 }

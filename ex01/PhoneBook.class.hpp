@@ -6,11 +6,18 @@
 
 class PhoneBook
 {
-	public:
-			Contact		contact[8];
-			int			i;
+	private:
+			Contact		_contact[8];
+			int			_i;
 			void		add(void);
 		//	void		search(void);
+			int			exit(std::string message);
+	public:
+		PhoneBook(void);
+		~PhoneBook(void);
+		int	start(void);
+		
+		Contact getContact(int i);
 };
 
 #endif

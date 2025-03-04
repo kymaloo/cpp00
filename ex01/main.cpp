@@ -6,47 +6,41 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 04:08:13 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/02/28 12:05:57 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:31:02 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 #include <cstdlib>
 
-std::string	prompt(std::string prompt)
+int	PhoneBook::start(void)
 {
-	std::string cmd;
+	std::string	str;
 
-	std::cout << prompt;
-	while (std::getline(std::cin, cmd))
+	str.clear();
+	while (1)
 	{
-		if (cmd.empty())
-			return (" ");
-		else
-			return (cmd);
+		std::cout << "PhoneBook => ";
+    	std::getline(std::cin, str);
+		if (std::cin.eof())
+			return (1);
+		else if (str == "ADD")
+			add();
+		// else if(str == "SEARCH")
+		// 	search();
+		else if (str == "EXIT")
+			return (exit("Bye bye PhoneBook"));
 	}
-	return (exit(1), " ");
+	return (EXIT_FAILURE);
 }
 
 int	main(void)
 {
 	PhoneBook	pb;
-	std::string	str;
+	int			error;
 
-	pb.i = 0;
-	str = prompt("PhoneBook => ");
-	while (str != "EXIT" && !str.empty())
-	{
-		
-		if (str == "ADD")
-			pb.add();
-		// else (str == "SEARCH")
-		// 	pb.search();
-		else if (str == "EXIT")
-			return (0);
-		str = prompt("PhoneBook => ");
-	}
-	return (0);
+	error = pb.start();
+	return (error);
 }
 
 // ? Verifier si les string recu ne sont pas NULL
@@ -63,4 +57,3 @@ int	main(void)
 // ? Step 3 : Ensuite, le programme demande à l’utilisateur d’entrer l’index du contact à af-
 // ? 		  ficher. Si l’index ou son format sont incorrects, gérez cela de manière pertinente.
 // ?		  Sinon, affichez les informations du contact, une par ligne.
-

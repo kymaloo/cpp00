@@ -6,7 +6,7 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:44:17 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/02/28 17:10:31 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:18:27 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,40 @@
 
 void	PhoneBook::add(void)
 {
-	if (i > 8)
-		i = 0;
-	contact[i].FillContact(contact[i].first_name, "First name : ");
-	contact[i].Setters(contact[i].first_name, 0); 
-	// contact[i].FillContact(contact[i].last_name, "Last name : ");
-	// contact[i].FillContact(contact[i].nick_name, "Nick name : ");
-	// contact[i].FillContact(contact[i].phone_numbers, "Phone numbers : ");
-	// contact[i].FillContact(contact[i].darkest_secret, "Darkest secret : ");
-	contact[i].PrintContact();
-	i++;
+	Contact contact;
+	if (_i > 8)
+		_i = 0;
+	contact = getContact(_i);
+	contact.fillContact();
+	//contact.printContact();
+	_i++;
 }
 
 // void	PhoneBook::search(void)
 // {
 	
 // }
+
+int	PhoneBook::exit(std::string message)
+{
+	std::cout << message << "\n";
+	return (0);
+}
+
+PhoneBook::PhoneBook(void)
+{
+	_i = 0;
+	std::cout << "The constuctor PhoneBook is called" << std::endl;
+}
+
+PhoneBook::~PhoneBook(void)
+{
+	std::cout << "The destuctor PhoneBook is called" << std::endl;
+}
+
+Contact PhoneBook::getContact(int i)
+{
+	if (i < 0 || i > 7)
+		return (Contact());
+	return (_contact[i]);
+}

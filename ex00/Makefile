@@ -10,6 +10,7 @@ BLUE	:= \033[34m
 RESET	:= \033[0m
 
 SRCS	:= megaphone.cpp
+
 OBJS	:= $(SRCS:.cpp=.o)
 
 all: $(NAME)
