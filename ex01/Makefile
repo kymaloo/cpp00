@@ -9,9 +9,11 @@ GREEN	:= \033[32m
 BLUE	:= \033[34m
 RESET	:= \033[0m
 
-SRCS	:=	main.cpp			\
-			Contact.class.cpp	\
-			PhoneBook.class.cpp	\
+SRCS	:=	main.cpp				\
+			Contact.cpp				\
+			Contact_getter.cpp		\
+			Contact_setter.cpp		\
+			PhoneBook.cpp			\
 
 OBJS	:= $(SRCS:.cpp=.o)
 

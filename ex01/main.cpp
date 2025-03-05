@@ -6,11 +6,11 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 04:08:13 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/03/04 16:31:02 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:31:41 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 #include <cstdlib>
 
 int	PhoneBook::start(void)
@@ -26,8 +26,8 @@ int	PhoneBook::start(void)
 			return (1);
 		else if (str == "ADD")
 			add();
-		// else if(str == "SEARCH")
-		// 	search();
+		else if(str == "SEARCH")
+			search();
 		else if (str == "EXIT")
 			return (exit("Bye bye PhoneBook"));
 	}

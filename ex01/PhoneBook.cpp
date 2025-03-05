@@ -1,32 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:44:17 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:18:27 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:08:16 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
 void	PhoneBook::add(void)
 {
-	Contact contact;
-	if (_i > 8)
+	if (_i > 7)
 		_i = 0;
-	contact = getContact(_i);
-	contact.fillContact();
-	//contact.printContact();
+	_contact[_i].fillContact();
 	_i++;
 }
 
-// void	PhoneBook::search(void)
-// {
-	
-// }
+void	PhoneBook::search(void)
+{
+	int			i;
+	bool		status;
+
+	i = 0;
+	status = _contact[i].contactIsEmpty(_contact[i]);
+	if (status == true)
+	{
+		std::cout << "The list of contact is empty\n";
+		return ;
+	}
+	std::cout << "_____________________________________________\n";
+	std::cout << "|     index|first name| last name| nick name|\n";
+	std::cout << "|__________|__________|__________|__________|\n";
+	while (status != true)
+	{
+		status = _contact[i].contactIsEmpty(_contact[i]);
+		//std::cout << "|" << 
+	}
+	std::stringstream(getInputIndex("Choose your contact : ")) >> i;
+	_contact[i].printContact(_contact[i]);
+}
 
 int	PhoneBook::exit(std::string message)
 {
@@ -45,9 +61,12 @@ PhoneBook::~PhoneBook(void)
 	std::cout << "The destuctor PhoneBook is called" << std::endl;
 }
 
-Contact PhoneBook::getContact(int i)
+bool indexIsValid(std::string str)
 {
-	if (i < 0 || i > 7)
-		return (Contact());
-	return (_contact[i]);
+    if (str.length() != 1)
+        return (false);
+    if (str[0] < '0' || str[0] >= '8')
+        return (false);
+    return (true);
 }
+
