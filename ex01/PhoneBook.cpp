@@ -6,7 +6,7 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:44:17 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/03/05 18:08:16 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:21:15 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,39 @@ void	PhoneBook::search(void)
 		std::cout << "The list of contact is empty\n";
 		return ;
 	}
-	std::cout << "_____________________________________________\n";
+	std::cout << "---------------------------------------------\n";
 	std::cout << "|     index|first name| last name| nick name|\n";
-	std::cout << "|__________|__________|__________|__________|\n";
+	std::cout << "|----------|----------|----------|----------|\n";
 	while (status != true)
 	{
 		status = _contact[i].contactIsEmpty(_contact[i]);
-		//std::cout << "|" << 
+		initSearch(i);
+		std::cout << "|         " << i << "|";
+		_contact[i].printString(_search[0]);
+		std::cout << "|";
+		_contact[i].printString(_search[1]);
+		std::cout << "|";
+		_contact[i].printString(_search[2]);
+		std::cout << "|\n";
+		i++;
+		status = _contact[i].contactIsEmpty(_contact[i]);
 	}
+	std::cout << "|-------------------------------------------|\n";
+	printContactWithIndex();
+}
+
+void	PhoneBook::initSearch(int i)
+{
+	_search[0] = _contact[i].getFirstName();
+	_search[1] = _contact[i].getLastName();
+	_search[2] = _contact[i].getNickName();
+}
+
+void	PhoneBook::printContactWithIndex(void)
+{
+	int	i;
+
+	i = 0;
 	std::stringstream(getInputIndex("Choose your contact : ")) >> i;
 	_contact[i].printContact(_contact[i]);
 }

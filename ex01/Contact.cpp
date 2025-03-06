@@ -6,7 +6,7 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:41:15 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/03/05 18:02:10 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:15:05 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	Contact::printContact(Contact &contact)
 			std::cout << "This contact isn't reel\n";
 			break ;
 		}
-		std::cout << contact._info[i] << std::endl;
+		std::cout << contact._parameter[i] << contact._info[i] << std::endl;
 	}
 }
 
-std::string	getInput(std::string parameter)
+std::string	getInput(std::string parameter, std::string whitespace)
 {
 	std::string input;
 
@@ -34,6 +34,7 @@ std::string	getInput(std::string parameter)
     {
     	std::cout << parameter << std::endl;
     	std::getline(std::cin, input);
+		input = deleteWhiteSpace(input, whitespace);
     	if (std::cin.eof())
         	return ("");
 	}
@@ -78,11 +79,11 @@ std::string	getInputIndex(std::string parameter)
 
 void Contact::fillContact(void)
 {
-	setFirstName(getInput(_parameter[0]));
-	setLastName(getInput(_parameter[1]));
-	setNickName(getInput(_parameter[2]));
-	setPhoneNumber(getInput(_parameter[3]));
-	setDarkestSecret(getInput(_parameter[4]));
+	setFirstName(getInput(_parameter[0], _whitespaces));
+	setLastName(getInput(_parameter[1], _whitespaces));
+	setNickName(getInput(_parameter[2], _whitespaces));
+	setPhoneNumber(getInputPhoneNumber(_parameter[3]));
+	setDarkestSecret(getInput(_parameter[4], _whitespaces));
 }
 
 std::string	deleteWhiteSpace(std::string input, std::string whiteSpace)
@@ -133,4 +134,25 @@ bool	Contact::contactIsEmpty(Contact &contact)
 	if (contact._info[0].empty())
 		return (true);
 	return (false);
+}
+
+void	Contact::printString(std::string str)
+{
+	size_t	size;
+	std::string	result;
+
+	result = str;
+	size = str.size();
+	if (size == 10)
+		std::cout << result;
+	if (size < 10)
+	{
+		std::cout << std::setw(10);
+		std::cout << result;
+	}
+	if (size > 10)
+	{
+		result = str.substr(0, 9);
+		std::cout << result << ".";
+	}
 }

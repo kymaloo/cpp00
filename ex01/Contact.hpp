@@ -2,6 +2,7 @@
 # define CONTACT_HPP
 
 # include <iostream>
+# include <iomanip>
 
 class Contact
 {
@@ -25,18 +26,18 @@ class Contact
 			void			setNickName(std::string str);
 			void			setPhoneNumber(std::string str);
 			void			setDarkestSecret(std::string str);
-	
 	public:
 			void			fillContact(void);
 			void			printContact(Contact &contact);
 			bool			contactIsEmpty(Contact &contact);
-};
-
-bool 			numIsValid(std::string str);
-std::string		deleteWhiteSpace(std::string input, std::string whiteSpace);
-std::string		getInput(std::string parameter);
-std::string		getInputPhoneNumber(std::string parameter);
-std::string		getInputIndex(std::string parameter);
-bool			indexIsValid(std::string str);
+			void			printString(std::string str);
+		};
+		
+		bool 			numIsValid(std::string str);
+		std::string		deleteWhiteSpace(std::string input, std::string whiteSpace);
+		std::string		getInput(std::string parameter, std::string whitespace);
+		std::string		getInputPhoneNumber(std::string parameter);
+		std::string		getInputIndex(std::string parameter);
+		bool			indexIsValid(std::string str);
 
 #endif

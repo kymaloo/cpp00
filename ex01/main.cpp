@@ -6,7 +6,7 @@
 /*   By: trgaspar <trgaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 04:08:13 by trgaspar          #+#    #+#             */
-/*   Updated: 2025/03/05 15:31:41 by trgaspar         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:21:08 by trgaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,3 @@ int	main(void)
 	error = pb.start();
 	return (error);
 }
-
-// ? Verifier si les string recu ne sont pas NULL
-// ? Skip les whites spaces
-
-// ?  SEARCH : affiche le contact demandé
-
-// ? Step 1 : Afficher les contact en colonnes (index, nom, prenom, pseudo)
-
-// ? Step 2 : Chaque colonne doit faire 10 caractères de long. Elles doivent être séparées
-// ?		  par un pipe (’|’). Leur texte est aligné à droite. Si le texte dépasse la largeur
-// ?		  de la colonne, il faut le tronquer et remplacer le dernier caractère affiché par un point (’.’).
-
-// ? Step 3 : Ensuite, le programme demande à l’utilisateur d’entrer l’index du contact à af-
-// ? 		  ficher. Si l’index ou son format sont incorrects, gérez cela de manière pertinente.
-// ?		  Sinon, affichez les informations du contact, une par ligne.
